@@ -1,0 +1,116 @@
+// MongoDB Playground
+// Use Ctrl+Space inside a snippet or a string literal to trigger completions.
+
+const database = 'arista-api';
+const collection = 'products';
+
+// Create a new database.
+use(database);
+
+db.products.drop();
+
+db.products.insertMany([
+// { "short_name":"","description":"", "price":"0", "main_product": false,"subproducts":[],"active":true },
+
+{ "_id":"1t$","short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.05", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"2t$","short_name":"B1 - Backup A","description":"(Protected Local Server Instances and Virtual Machines)", "price":"49.13", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"3t$","short_name":"B2 - Backup B","description":"GRS data stored","price":"120.25", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"4t$","short_name":"S1 - Storage","description":"Archivos (Datos almacenados LRS)","price":"78.33", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"5t$","short_name":"S2 - Storage","description":"Discos administrados SSD premium","price":"100.61", "main_product": false,"subproducts":[],"active":true },
+
+{ "_id":"6t$","short_name":"S3 - Storage","description":"Discos administrados SSD estándar","price":"1043.24", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"7t$","short_name":"S4 - Storage","description":"Blob en páginas premium (Discos P10)","price":"89.9", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"8t$","short_name":"S5 - Storage","description":"Discos administrados HDD estándar","price":"41.04", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"9t$","short_name":"S6 - Storage","description":"Archivos (Datos almacenados GRS )","price":"1030.4", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"10t$","short_name":"VM0 -	Virtual Machines","description":"Serie Dv2/DSv2 (D1 v2/DS1 v2)","price":"86.20", "main_product": false,"subproducts":[],"active":true },
+
+{ "_id":"11t$","short_name":"VM2 - Virtual Machines","description":"Serie Dv2/DSv2 (D11 v2/DS11)","price":"137.92", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"12t$","short_name":"VM3 -	Virtual Machines","description":"Serie Dv3/DSv3","price":"429.37", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"13t$","short_name":"VM4 -	Virtual Machines","description":"Serie Edsv4","price":"429.42", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"14t$","short_name":"VMA -	Virtual Machines","description":"Serie A basic","price":"18.66", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"15t$","short_name":"VMB -	Virtual Machines","description":"Serie BS","price":"124.05", "main_product": false,"subproducts":[],"active":true },
+
+{ "_id":"16t$","short_name":"VMSQL - Virtual Machines Licenses","description":"SQL Server Enterprise (Licencia para VM de 1-4 vCPU)","price":"1118.3", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"17t$","short_name":"VMW - Virtual Machines (Dv3/DSv3)","description":"Serie Dv3/DSv3 Windows","price":"316.11", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"18t$","short_name":"VMW - Virtual Machines (BS)","description":"Serie BS Windows (B20ms)","price":"775.3", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"19t$","short_name":"VMW -	Virtual Machines (Ev3/ESv3)","description":"Serie Ev3/ESv3 Windows","price":"1878.58", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"20t$","short_name":"VN - Virtual Network","description":"Direcciones IP (Dirección IP pública)","price":"64.67", "main_product": false,"subproducts":[],"active":true },
+{ "_id":"21t$","short_name":"VPN - VPN Gateway","description":"VpnGw1","price":"567.37", "main_product": false,"subproducts":[],"active":true },
+
+    {   
+        "short_name":"Basic",
+        "description":"Ideal for an startup or small business as it is perfect balance for price / computing power",
+        "price":"2717.70",
+        "paypal_product_id":"PROD-81V251199Y339752P",
+        "main_product": true,
+        "subproducts":[
+                    {"_id":"1t$","show":false, "short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.05", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"2t$","show":true, "short_name":"B1 - Backup A","description":"(Protected Local Server Instances and Virtual Machines)", "price":"49.14", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"3t$","show":false, "short_name":"B2 - Backup B","description":"GRS data stored","price":"120.25", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"4t$","show":true, "short_name":"S1 - Storage","description":"Archivos (Datos almacenados LRS)","price":"78.33", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"5t$","show":false, "short_name":"S2 - Storage","description":"Discos administrados SSD premium","price":"100.61", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"7t$","show":false, "short_name":"S4 - Storage","description":"Blob en páginas premium (Discos P10)","price":"89.90", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"8t$","show":false, "short_name":"S5 - Storage","description":"Discos administrados HDD estándar","price":"41.04", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"9t$","show":false   , "short_name":"S6 - Storage","description":"Archivos (Datos almacenados GRS )","price":"1030.4", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"16t$","show":true, "short_name":"VMSQL - Virtual Machines Licenses","description":"SQL Server Enterprise (Licencia para VM de 1-4 vCPU)","price":"1118.3", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"20t$","show":true, "short_name":"VN - Virtual Network","description":"Direcciones IP (Dirección IP pública)","price":"64.67", "main_product": false,"subproducts":[],"active":true }
+        ],
+        "active":true 
+    },
+    {   "short_name":"Professional",
+        "description":"Design for business that have already experience with cloud solutions. Get the flexibility you need for your fast-growing business ideas",
+        "price":"3985.70",
+        "main_product": true,
+        "paypal_product_id":"PROD-7TE52527YK629423J",
+        "subproducts":[
+                    {"_id":"1t$","show":true, "short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.5", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"2t$","show":true, "short_name":"B1 - Backup A","description":"(Protected Local Server Instances and Virtual Machines)", "price":"49.13", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"3t$","show":false, "short_name":"B2 - Backup B","description":"GRS data stored","price":"120.25", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"4t$","show":false, "short_name":"S1 - Storage","description":"Archivos (Datos almacenados LRS)","price":"78.33", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"5t$","show":false, "short_name":"S2 - Storage","description":"Discos administrados SSD premium","price":"100.61", "main_product": false,"subproducts":[],"active":true },
+
+                    {"_id":"6t$","show":false, "short_name":"S3 - Storage","description":"Discos administrados SSD estándar","price":"1043.24", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"7t$","show":false, "short_name":"S4 - Storage","description":"Blob en páginas premium (Discos P10)","price":"89.90", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"8t$","show":false, "short_name":"S5 - Storage","description":"Discos administrados HDD estándar","price":"41.04", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"9t$","show":true, "short_name":"S6 - Storage","description":"Archivos (Datos almacenados GRS )","price":"1030.4", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"18t$","show":true, "short_name":"VMW - Virtual Machines (BS)","description":"Serie BS Windows (B20ms)","price":"775.3", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"20t$","show":true, "short_name":"VN - Virtual Network","description":"Direcciones IP (Dirección IP pública)","price":"64.67", "main_product": false,"subproducts":[],"active":true },
+                    {"_id":"21t$","show":true, "short_name":"VPN - VPN Gateway","description":"VpnGw1","price":"567.37", "main_product": false,"subproducts":[],"active":true }
+        ],
+        "active":true },
+    {   "short_name":"Enterprise",
+        "description":"A custom solution for medium-large companies. Become the most competitive business with the highes cutting-edge technology stack",
+        "price":"8523.90",
+        "main_product": true,
+        "paypal_product_id":"PROD-43A46486P7886374F",
+        "subproducts":[
+            {"_id":"1t$","show":true, "short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.05", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"2t$","show":true, "short_name":"B1 - Backup A","description":"(Protected Local Server Instances and Virtual Machines)", "price":"49.13", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"3t$","show":true, "short_name":"B2 - Backup B","description":"GRS data stored","price":"120.25", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"4t$","show":false, "short_name":"S1 - Storage","description":"Archivos (Datos almacenados LRS)","price":"78.33", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"5t$","show":false, "short_name":"S2 - Storage","description":"Discos administrados SSD premium","price":"100.61", "main_product": false,"subproducts":[],"active":true },
+
+            {"_id":"6t$","show":false, "short_name":"S3 - Storage","description":"Discos administrados SSD estándar","price":"1043.24", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"7t$","show":false, "short_name":"S4 - Storage","description":"Blob en páginas premium (Discos P10)","price":"89.90", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"8t$","show":false, "short_name":"S5 - Storage","description":"Discos administrados HDD estándar","price":"41.04", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"9t$","show":true, "short_name":"S6 - Storage","description":"Archivos (Datos almacenados GRS )","price":"1030.4", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"10t$","show":true, "short_name":"VM0 -	Virtual Machines","description":"Serie Dv2/DSv2 (D1 v2/DS1 v2)","price":"86.2", "main_product": false,"subproducts":[],"active":true },
+
+            {"_id":"11t$","show":false, "short_name":"VM2 - Virtual Machines","description":"Serie Dv2/DSv2 (D11 v2/DS11)","price":"137.92", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"12t$","show":true, "short_name":"VM3 -	Virtual Machines","description":"Serie Dv3/DSv3","price":"429.37", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"13t$","show":false, "short_name":"VM4 -	Virtual Machines","description":"Serie Edsv4","price":"429.42", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"14t$","show":false, "short_name":"VMA -	Virtual Machines","description":"Serie A basic","price":"18.66", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"15t$","show":false, "short_name":"VMB -	Virtual Machines","description":"Serie BS","price":"124.05", "main_product": false,"subproducts":[],"active":true },
+
+            {"_id":"16t$","show":true, "short_name":"VMSQL - Virtual Machines Licenses","description":"SQL Server Enterprise (Licencia para VM de 1-4 vCPU)","price":"1118.30", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"17t$","show":false, "short_name":"VMW - Virtual Machines (Dv3/DSv3)","description":"Serie Dv3/DSv3 Windows","price":"316.11", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"18t$","show":false, "short_name":"VMW - Virtual Machines (BS)","description":"Serie BS Windows (B20ms)","price":"775.3", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"19t$","show":true, "short_name":"VMW -	Virtual Machines (Ev3/ESv3)","description":"Serie Ev3/ESv3 Windows","price":"1878.58", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"20t$","show":true, "short_name":"VN - Virtual Network","description":"Direcciones IP (Dirección IP pública)","price":"64.67", "main_product": false,"subproducts":[],"active":true },
+            {"_id":"21t$","show":true, "short_name":"VPN - VPN Gateway","description":"VpnGw1","price":"567.37", "main_product": false,"subproducts":[],"active":true }
+        ],
+        "active":true
+    }
+
+]);
+
