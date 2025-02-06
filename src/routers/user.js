@@ -6,17 +6,15 @@ const Notification = require("../model/notification");
 const Signup = require("../model/signup");
 const auth = require("../middleware/auth");
 const moment = require("moment");
-const multer = require("multer"); // parar cargar imagenes
-const sharp = require("sharp");
 
 const axios = require("axios");
 
 const {
   sendWelcomeEmail,
-  sendGoodbyEmail,
+  
   sendConfirmationEmail,
 } = require("../emails/account");
-const sendWelcomeSMS = require("../sms/sendsms");
+
 const passwordGenerator = require("../utils/codegenerator");
 
 router.post("/users/signup", async (req, res) => {
@@ -74,6 +72,7 @@ router.post("/users/create/:signup_code", async (req, res) => {
     res.status(400).send(e);
   }
 });
+
 
 router.post("/users/plans", auth, async (req, res) => {
   // endpoint to create paypal plans for the customer
@@ -183,6 +182,7 @@ router.get("/users/orders", auth, async (req, res) => {
       match["user_id"] = req.user._id;
       match["plan.id"] = req.query.planid;
     }
+    
     if( req.query.subscriptionID ){
       match["user_id"] = req.user._id;
       match["subscription.subscriptionID"] = req.query.subscriptionID
@@ -193,6 +193,7 @@ router.get("/users/orders", auth, async (req, res) => {
     res.status(500).send();
   }
 });
+
 
 router.get("/users/me", auth, async (req, res) => {
   res.send(req.user);
@@ -289,84 +290,6 @@ router.post("/users/logoutall", auth, async (req, res) => {
   } catch (error) {
     res.status(500).send();
   }
-});
-
-const upload = multer({
-  //dest: 'avatars', commentado para evitar que envie el archivo sea enviado a la carpeta avatars
-  limits: {
-    fileSize: 1000000, // 1,0 megabytes
-  },
-  fileFilter(req, file, cb) {
-    // cb -> callback function
-
-    if (!file.originalname.match(/\.(png|jpg|jpeg)$/)) {
-      // Expresion regular-> checar regex101.com
-      return cb(new Error("Not a valid image.. use only PNG, JPEG, JPG"));
-    }
-
-    cb(undefined, true);
-    // cb( new Error('file type in not accepted') )
-    // cb( undefined, true )
-    // cb( undefined, false )
-  },
-});
-
-// POST actualizar imagen avater del usuario autenticado
-router.post(
-  "/users/me/avatar",
-  auth,
-  upload.single("avatar"),
-  async (req, res) => {
-    const buffer = await sharp(req.file.buffer)
-      .resize({ width: 250, height: 250 })
-      .png()
-      .toBuffer();
-
-    req.user.selfi = buffer;
-
-    await req.user.save();
-
-    res.send();
-  },
-  (error, req, res, next) => {
-    // handle error while loading upload
-    res.status(400).send({ error: error.message });
-  }
-);
-
-// DELETE elminar el avatar del usuario autenticado
-router.delete("/users/me/avatar", auth, async (req, res) => {
-  req.user.avatar = undefined;
-  await req.user.save();
-
-  res.send();
-});
-
-// GET obtener el avatar de cualquier usuario (sin estar logeado)
-router.get("/users/:id/avatar", async (req, res) => {
-  try {
-    const user = await User.findById(req.params.id);
-
-    if (!user || !user.avatar) {
-      throw new Error();
-    }
-
-    res.set("Content-Type", "image/png"); // respues en modo imagen desde el server
-    res.send(user.avatar); // send -> campo buffer
-  } catch (error) {
-    res.status(404).send();
-  }
-});
-
-const MessagingResponse = require("twilio").twiml.MessagingResponse;
-
-router.post("/sms", (req, res) => {
-  const twiml = new MessagingResponse();
-
-  twiml.message("Codigo de acceso 103456 expira en 5 minutos");
-
-  res.set("Content-Type", "text/xml");
-  res.send(twiml.toString());
 });
 
 const isComparaArreglosJSON = (origen, destino) => {
