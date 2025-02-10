@@ -88,7 +88,7 @@ router.post("/users/plans", auth, async (req, res) => {
     const paypalRes = await api.post("/v1/billing/plans", {
       product_id: cart.product.paypal_product_id,
       name: `Service pack ${cart.product.short_name}`,
-      description: `12 months suscription for ${cart.product.short_name} pack`,
+      description: `Suscription for ${cart.product.short_name} pack`,
       billing_cycles: [
         {
           frequency: {

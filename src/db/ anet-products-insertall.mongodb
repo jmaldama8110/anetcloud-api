@@ -1,7 +1,7 @@
 // MongoDB Playground
 // Use Ctrl+Space inside a snippet or a string literal to trigger completions.
 
-const database = 'arista-api';
+const database = 'anetapi-sandbox';
 const collection = 'products';
 
 // Create a new database.
@@ -41,7 +41,7 @@ db.products.insertMany([
         "short_name":"Basic",
         "description":"Ideal for an startup or small business as it is perfect balance for price / computing power",
         "price":"2717.70",
-        "paypal_product_id":"PROD-81V251199Y339752P",
+        "paypal_product_id":"PROD-58U51328H4454323E",
         "main_product": true,
         "subproducts":[
                     {"_id":"1t$","show":false, "short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.05", "main_product": false,"subproducts":[],"active":true },
@@ -61,7 +61,7 @@ db.products.insertMany([
         "description":"Design for business that have already experience with cloud solutions. Get the flexibility you need for your fast-growing business ideas",
         "price":"3985.70",
         "main_product": true,
-        "paypal_product_id":"PROD-7TE52527YK629423J",
+        "paypal_product_id":"PROD-93M25437PN7778011",
         "subproducts":[
                     {"_id":"1t$","show":true, "short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.5", "main_product": false,"subproducts":[],"active":true },
                     {"_id":"2t$","show":true, "short_name":"B1 - Backup A","description":"(Protected Local Server Instances and Virtual Machines)", "price":"49.13", "main_product": false,"subproducts":[],"active":true },
@@ -82,7 +82,7 @@ db.products.insertMany([
         "description":"A custom solution for medium-large companies. Become the most competitive business with the highes cutting-edge technology stack",
         "price":"8523.90",
         "main_product": true,
-        "paypal_product_id":"PROD-43A46486P7886374F",
+        "paypal_product_id":"PROD-2FJ65957SX504544S",
         "subproducts":[
             {"_id":"1t$","show":true, "short_name":"A - ANET Site Recovery","description":"(VM replica at ANET A1)","price":"25.05", "main_product": false,"subproducts":[],"active":true },
             {"_id":"2t$","show":true, "short_name":"B1 - Backup A","description":"(Protected Local Server Instances and Virtual Machines)", "price":"49.13", "main_product": false,"subproducts":[],"active":true },
