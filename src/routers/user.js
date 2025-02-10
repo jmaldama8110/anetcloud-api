@@ -11,7 +11,7 @@ const axios = require("axios");
 
 const {
   sendWelcomeEmail,
-  
+  sendPaymentLinkEmail,
   sendConfirmationEmail,
 } = require("../emails/account");
 
@@ -88,7 +88,7 @@ router.post("/users/plans", auth, async (req, res) => {
     const paypalRes = await api.post("/v1/billing/plans", {
       product_id: cart.product.paypal_product_id,
       name: `Service pack ${cart.product.short_name}`,
-      description: `12 months suscription for ${cart.product.short_name} pack`,
+      description: `Monthly suscription for ${cart.product.short_name} pack`,
       billing_cycles: [
         {
           frequency: {
@@ -127,6 +127,34 @@ router.post("/users/plans", auth, async (req, res) => {
     res.status(400).send(error);
   }
 });
+
+router.post("/users/waits", async (req, res) => {
+  try{
+    setTimeout( ()=> {
+      const plan = { id: 'suscriptionId028912981'}
+      res.send({...plan })
+    },2000)
+  }
+  catch(e){
+    res.status(401).send(e.message);
+  }
+})
+router.post("/users/paylink", auth, async(req, res) =>{
+  try {
+    /// req.body.suscriptionId is sent from Client
+    const fullUrl = req.header('Referer')
+    
+    const token = req.header('Authorization').replace('Bearer ','')
+    /// this is generated from the server
+    const paymentUrl = `${fullUrl}payment/${token}/${req.body.suscriptionId}`;
+    
+    sendPaymentLinkEmail(req.user.email, req.body.suscriptionId, paymentUrl);
+    res.send('Ok');
+  }
+  catch(e){
+    res.status(401).send(e.messaage);
+  }
+})
 
 /// Get transactions from a suscriptionID
 router.get("/users/transactions/:subscriptionID", auth, async (req, res) => {
