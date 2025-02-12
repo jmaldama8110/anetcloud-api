@@ -150,14 +150,11 @@ router.post("/users/paylink", auth, async(req, res) =>{
     const token = req.header('Authorization').replace('Bearer ','')
     /// this is generated from the server
     
-    if( !req.user.cart.product.paypal_product_id ){
-      throw new Error('Suscription Id not found at user request...');
+    if( !req.body.suscription_id ){
+      throw new Error('Suscription Id not found at the request body...');
     }
-    const payment_url = `${fullUrl}payment/${token}/${req.user.cart.product.paypal_product_id}`;
-
-    // console.log(req.user.cart.product);
-
-    //sendPaymentLinkEmail(req.user.email, req.body.suscriptionId, paymentUrl);
+    const payment_url = `${fullUrl}payment/${token}/${req.body.suscription_id}`;
+    
     await sendTemplateEmail({
             email: req.user.email,
             name: req.user.name,
@@ -165,7 +162,6 @@ router.post("/users/paylink", auth, async(req, res) =>{
             title: "Thanks you for suscribing to ANET Cloud",
             subtitle: "Click below to finish your payment process by clicking at the link here:", 
             payment_url 
-
     },'d-2a241769a01b4879bb2c85d898edb8a9');
  
     res.send('Ok');
