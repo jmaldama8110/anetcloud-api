@@ -95,8 +95,5 @@ async function sendTemplateEmail (data, template_id ) {
 
 
 module.exports = {
-    sendConfirmationEmail,
-    sendWelcomeEmail,
-    sendGoodbyEmail,
     sendTemplateEmail
 }

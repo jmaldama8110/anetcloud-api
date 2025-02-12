@@ -10,9 +10,7 @@ const moment = require("moment");
 const axios = require("axios");
 
 const {
-  sendWelcomeEmail,
   sendTemplateEmail,
-  sendConfirmationEmail,
 } = require("../emails/account");
 
 const passwordGenerator = require("../utils/codegenerator");
@@ -24,7 +22,12 @@ router.post("/users/signup", async (req, res) => {
     const signup = new Signup({ code, ...req.body });
     await signup.save();
 
-    sendConfirmationEmail(req.body.email, req.body.name, code)
+    await sendTemplateEmail({
+      email: signup.email,
+      name: `${signup.name} ${signup.lastname}`,
+      code
+    },'d-5d842a85af644db38d2767dd76b11ad7')
+    //sendConfirmationEmail(req.body.email, req.body.name, code)
     res.status(201).send({
       signup: {
         name: signup.name,
@@ -64,7 +67,6 @@ router.post("/users/create/:signup_code", async (req, res) => {
 
     const token = await user.generateAuthToken();
     await user.save();
-    sendWelcomeEmail(user.email, user.name)
 
     res.status(201).send({ user, token });
   } catch (e) {
