@@ -11,7 +11,7 @@ const axios = require("axios");
 
 const {
   sendWelcomeEmail,
-  sendPaymentLinkEmail,
+  sendTemplateEmail,
   sendConfirmationEmail,
 } = require("../emails/account");
 
@@ -144,15 +144,35 @@ router.post("/users/paylink", auth, async(req, res) =>{
     /// req.body.suscriptionId is sent from Client
     const fullUrl = req.header('Referer')
     
+    if( !fullUrl ){
+      throw new Error('No web client found at request Refer param!')
+    }
     const token = req.header('Authorization').replace('Bearer ','')
     /// this is generated from the server
-    const paymentUrl = `${fullUrl}payment/${token}/${req.body.suscriptionId}`;
     
-    sendPaymentLinkEmail(req.user.email, req.body.suscriptionId, paymentUrl);
+    if( !req.user.cart.product.paypal_product_id ){
+      throw new Error('Suscription Id not found at user request...');
+    }
+    const payment_url = `${fullUrl}payment/${token}/${req.user.cart.product.paypal_product_id}`;
+
+    // console.log(req.user.cart.product);
+
+    //sendPaymentLinkEmail(req.user.email, req.body.suscriptionId, paymentUrl);
+    await sendTemplateEmail({
+            email: req.user.email,
+            name: req.user.name,
+            subject: `Finish your suscription for ${req.user.cart.product.paypal_product_id}`,
+            title: "Thanks you for suscribing to ANET Cloud",
+            subtitle: "Click below to finish your payment process by clicking at the link here:", 
+            payment_url 
+
+    },'d-2a241769a01b4879bb2c85d898edb8a9');
+ 
     res.send('Ok');
   }
   catch(e){
-    res.status(401).send(e.messaage);
+    
+    res.status(401).send(e.message);
   }
 })
 
@@ -289,7 +309,7 @@ router.post("/users/login", async (req, res) => {
 
     res.send({ user: user, token });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(400).send(error);
   }
 });
