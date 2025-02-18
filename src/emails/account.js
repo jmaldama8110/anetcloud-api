@@ -15,19 +15,10 @@ async function sendTemplateEmail (data, template_id ) {
                 baseURL: sendGridApiUrl,
                 headers: {
                 "content-type": "application/json",
-                Authorization: `Bearer ${sendGridApiKey}`,
+                "Authorization": `Bearer ${sendGridApiKey}`,
                 },
         });
-        console.log(sendGridApiKey);
 
-        // const data = {
-        //     email: 'josman.gomez.aldama@gmail.com',
-        //     name:'JOSE MANUEL GOMEZ',
-        //     subject: 'Welcome',
-        //     title: 'Thanks you for suscribing to ANET Cloud',
-        //     subtitle: 'Click below to finish your payment process by clicking at the link here:', 
-        //     payment_url: 'https://www.aristanetworks.cloud/someowime/9230e920e9u2309e' 
-        // }
        
         await new Promise(resolve => setTimeout(resolve, 3000));
         // just for testing in development
