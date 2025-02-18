@@ -4,7 +4,6 @@ const axios = require("axios");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
-
 async function sendTemplateEmail (data, template_id ) {
 
     const sendGridApiKey = process.env.SENDGRID_API_KEY ? process.env.SENDGRID_API_KEY : "";
@@ -19,6 +18,7 @@ async function sendTemplateEmail (data, template_id ) {
                 Authorization: `Bearer ${sendGridApiKey}`,
                 },
         });
+        console.log(sendGridApiKey);
 
         // const data = {
         //     email: 'josman.gomez.aldama@gmail.com',
